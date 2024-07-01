@@ -65,7 +65,7 @@ export class MoviesListComponent implements AfterViewInit, OnDestroy {
     this.filterSubscription = this.filterForm.valueChanges
     .pipe(
       tap((values) => {
-        const title = values.title || '';
+        const title = values.title ? values.title.trim() : '';
         const year = values.year ? values.year.toString() : '';
 
         let filteredMovieList = this.moviesList;
