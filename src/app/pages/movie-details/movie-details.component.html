@@ -1,0 +1,94 @@
+<ng-container *ngIf="movieDetails$ | async as details">
+  <div class="container">
+    <div class="my-3">
+      <button [routerLink]="['']">Back</button>
+    </div>
+    <div class="col-12">
+      <h1>{{details.title}}</h1>
+    </div>
+    <div class="row my-3">
+      <div class="col-4">
+        <img class="img-fluid" [src]="details.poster" alt="Poster">
+      </div>
+      <div class="col-8 align-content-center">
+        <span>
+          <b>Summary:</b>  {{details.summary}}
+        </span>
+      </div>
+    </div>
+    <div class="my-3">
+      <div class="row border-bottom">
+        <div class="col-5 border-end align-content-center">
+          <h5>
+            <b>
+              Box Office
+            </b>
+          </h5>
+        </div>
+        <div class="col-7 align-content-center">
+          ${{details.box_office}} milion
+        </div>
+      </div>
+      <div class="row border-bottom">
+        <div class="col-5 border-end align-content-center">
+          <h5>
+            <b>
+              Budget
+            </b>
+          </h5>
+        </div>
+        <div class="col-7 align-content-center">
+          ${{details.budget}} milion
+        </div>
+      </div>
+      <div class="row border-bottom">
+        <div class="col-5 border-end align-content-center">
+          <h5>
+            <b>
+              Duration
+            </b>
+          </h5>
+        </div>
+        <div class="col-7 align-content-center">
+          {{+details.duration | duration}}
+        </div>
+      </div>
+      <div class="row border-bottom">
+        <div class="col-5 border-end align-content-center">
+          <h5>
+            <b>
+              Producers
+            </b>
+          </h5>
+        </div>
+        <div class="col-7 align-content-center">
+          <span *ngFor="let producer of details.producers; index as i">
+            @if (i + 1 === details.producers.length) {
+              {{producer}}
+            } @else {
+              {{producer}},
+            }
+          </span>
+        </div>
+      </div>
+      <div class="row border-bottom">
+        <div class="col-5 border-end align-content-center">
+          <h5>
+            <b>
+              Cinematographers
+            </b>
+          </h5>
+        </div>
+        <div class="col-7 align-content-center">
+          <span *ngFor="let cinematographer of details.cinematographers; index as i">
+            @if (i + 1 === details.cinematographers.length) {
+              {{cinematographer}}
+            } @else {
+              {{cinematographer}},
+            }
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

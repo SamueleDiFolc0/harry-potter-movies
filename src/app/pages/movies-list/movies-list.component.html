@@ -1,0 +1,37 @@
+<div class="container">
+  <form [formGroup]="filterForm">
+    <div class="row justify-content-center">
+      <div class="col-6">
+        <label for="title">Title</label>
+        <input type="text" id="title" formControlName="title" name="title" />
+      </div>
+      <div class="col-6">
+        <label for="year">Release year</label>
+        <input type="number" id="year" formControlName="year" name="year" />
+      </div>
+    </div>
+  </form>
+  <div class="row justify-content-center">
+    <ul class="list-group list-group-flush">
+      <ng-container *ngIf="movies$ | async as movies">
+        <li class="list-group-item" *ngFor="let movie of filteredMoviesList">
+          <div class="row">
+            <div class="col">
+              <h1>{{ movie.title }}</h1>
+              <div class="row">
+                <div class="col-3">Release date:
+                  {{ movie.release_date | date : "YYYY-MM-dd" }}</div>
+                <div class="col-3">Budget: ${{ movie.budget }} milion</div>
+                <div class="col-3">Duration: {{ +movie.duration | duration }}
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+              <button [routerLink]="['/details', movie.id]">Details</button>
+            </div>
+          </div>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</div>
